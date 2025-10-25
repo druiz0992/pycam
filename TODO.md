@@ -1,0 +1,2 @@
+- IP: i can get it from config
+- it seems that user_camera is not needed at all

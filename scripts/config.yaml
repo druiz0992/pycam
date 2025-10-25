@@ -1,0 +1,11 @@
+host: 192.168.1.42
+user:
+  camera: admin123
+  cloud: admin
+port: 554
+flip_image: true
+daynight_mode: day
+video_quality: high
+start_position:
+   pan: 10.0
+   tilt: 25.0
