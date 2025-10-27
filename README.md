@@ -8,6 +8,30 @@ Currently it supports **TP-Link Tapo cameras** via the [`pytapo`](https://github
 - **Modular architecture** — easily extend with new camera APIs.  
 
 
+## Dependencies
+
+empy>=4.0
+jinja2>=3.0
+pyyaml>=6.0
+python-dotenv>=1.0
+pytapo>=3.0
+
+**NOTE:** [tapo library](https://github.com/JurajNyiri/pytapo/tree/main) lists Python3.13 as requirement
+
+### Tapo Cameras
+Before using the library wiht a Tapo camera, you need to configure permissions. I am assuming that you have your Tapo App installed,
+and a user created. To use Tapo camera we need to configure two different users. I will be calling `Cloud User` the main user created
+to access the camera wiht Tapo App.
+
+1. Create `Camera User` with Tapo App. 
+   -  Open App, select Tapo camara you want to configure
+   -  Go to "Settings" -> "Advanced Configuration" -> "Camara Account"
+   -  Enable camara and create `Camara User`. 
+2. Enable third party services with Tapo App.
+   -  Open App, select "You" in the low right corner
+   -  Go to "Third Party Services" -> "Third Party Compatibility"
+   -  Enable Compatibility
+
 ## Usage
 
 ```python
@@ -98,3 +122,35 @@ The following API has been defined for the camera
 ## Notes
 - When camera is initialized, the configured options are sent to the camera (flip, day/night vision, starting position).
 - Camera starts pointing down and to the left. This position corresponds to a `pan` and `tilt` angle of 0 degress. `pan` is between 0 (all to the left) and 360 degrees (all to the right). `tilt` is between 0 (pointing down) and 90 degrees (pointing up).
+
+
+
+
+
+## RTSP Stream
+- Enable RTSP from Tapo app:
+```
+Abre la app.
+Ve a Configuración Avanzada.
+Activa RTSP o Modo de transmisión.
+Te dará una URL como:
+rtsp://usuario:contraseña@IP:554/stream1
+```
+Esto te permite ver el video en tiempo real desde tu app (con VLC, OpenCV, etc.).
+
+**NOTE** VLC may not work. Alternatively, try this:
+
+```
+sudo apt install ffmpeg
+ffplay -rtsp_transport tcp rtsp://umiteam:UmiTeam.2023@192.168.13.134:554/stream1
+```
+
+sudo apt update
+sudo apt install -y libxcb-xinerama0
+
+## Control Camera
+
+- Enable third party services:
+
+In Tapo App, User -> Third Party Services -> Compatibility ->  Enable
+
